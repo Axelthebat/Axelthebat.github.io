@@ -432,6 +432,9 @@ article .byline { font-size: var(--step-small); color: var(--muted); margin: 0.6
 article .diagram { margin: 2rem 0 2.4rem; max-width: 100%; }
 article .diagram img { width: 100%; height: auto; }
 article .letter p { max-width: 58ch; }
+article p, article li { max-width: 64ch; }
+article .strip { max-width: 78ch; }
+article .post-action { margin: 1.6rem 0 0; }
 
 /* movimento */
 

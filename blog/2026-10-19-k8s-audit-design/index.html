@@ -34,6 +34,8 @@
 
       <p class="lead" data-reveal>A scanner for Kubernetes manifests that prints one line per problem and exits non-zero when it finds one.</p>
 
+      <p class="post-action" data-reveal><a class="hero-action" href="https://github.com/Axelthebat">Follow along on GitHub</a></p>
+
       <h2 data-reveal>The problem</h2>
 
       <p>Most manifest review happens by reading YAML. That works until the manifest count grows past what one person can hold in their head, and then it happens through whatever review tool the team already has. The checks are not the problem. The problem is that a checklist, a policy document and someone's memory are the only places they live, and none of those run in CI.</p>
@@ -69,6 +71,19 @@
 
       <p>Parsing is deliberately shallow. Each file becomes one object, and a manifest that is not valid YAML is reported as a finding rather than as a crash. The rule engine gets a plain object and knows nothing about the file it came from, which keeps the rules easy to test and easy to read.</p>
 
+      <div class="strip" data-reveal>
+        <figure>
+          <img src="../../assets/a-messy-network-server-room-showing-wires.jpg" width="1542" height="2048" loading="lazy" decoding="async" alt="A rack of network switches with dozens of white ethernet cables patched into the front panel">
+        </figure>
+        <figure>
+          <img src="../../assets/free-computer-server-room-image.webp" width="1024" height="768" loading="lazy" decoding="async" alt="Rows of black server racks with blue cabling in a data centre">
+        </figure>
+        <figure>
+          <img src="../../assets/splicing-of-the-fiber-optic-cables-for.jpg" width="1920" height="1440" loading="lazy" decoding="async" alt="A fibre optic patch panel with a fibre fusion splicer open in front of it">
+        </figure>
+      </div>
+      <p class="small muted" data-reveal>The kind of infrastructure the manifests describe. Photos: Moses Cursor Ssebunya (CC0), rawpixel (CC0), MTA Capital Construction (CC BY 2.0).</p>
+
       <p>Output comes in two shapes. SARIF goes to GitHub code scanning, so a finding shows up on the pull request that introduced it. That is the only place anyone will actually read it. Text and JSON go to a terminal, for the person running it locally.</p>
 
       <h2 data-reveal>Out of scope</h2>
@@ -103,5 +118,6 @@
   </div>
 </footer>
 
+<script src="../../assets/site.js" defer></script>
 </body>
 </html>
