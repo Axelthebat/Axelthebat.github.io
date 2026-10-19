@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Axel the Bat: security tooling for Linux, Kubernetes and networks</title>
+<meta name="description" content="Axel builds small auditing tools in Go and Rust for Linux hosts, Kubernetes manifests and the networks between them. Everything MIT licensed and built in the open.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Axel the Bat: security tooling">
+<meta property="og:description" content="Small auditing tools for Linux, Kubernetes and networks. Go and Rust, MIT licensed.">
+<meta name="theme-color" content="#eae9e6">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet"> <!-- taste-skill-ignore: a monoespacada so e usada dentro de bloco de codigo real -->
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="top">
+    <h1 class="wordmark" data-reveal>Axel the Bat</h1>
+    <p class="tagline" data-reveal>Small auditing tools for Linux hosts, Kubernetes manifests and the networks between them. Go and Rust, MIT licensed.</p>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="plinth" data-reveal>
+
+        <!-- finding: o formato de saida que o k8s-audit vai produzir -->
+        <div class="finding" data-active="true">
+          <dl>
+            <div class="row"><dt>rule</dt><dd class="id">K8S-0002</dd></div>
+            <div class="row"><dt>severity</dt><dd class="sev sev-critical">critical</dd></div>
+            <div class="row"><dt>file</dt><dd>manifests/api-deployment.yaml</dd></div>
+            <div class="row"><dt>line</dt><dd>27</dd></div>
+            <div class="row"><dt>message</dt><dd>Container runs with privileged: true</dd></div>
+          </dl>
+        </div>
+
+        <div class="finding">
+          <dl>
+            <div class="row"><dt>rule</dt><dd class="id">K8S-0003</dd></div>
+            <div class="row"><dt>severity</dt><dd class="sev sev-high">high</dd></div>
+            <div class="row"><dt>file</dt><dd>manifests/api-deployment.yaml</dd></div>
+            <div class="row"><dt>line</dt><dd>28</dd></div>
+            <div class="row"><dt>message</dt><dd>Container shares the host network namespace</dd></div>
+          </dl>
+        </div>
+
+        <div class="finding">
+          <dl>
+            <div class="row"><dt>rule</dt><dd class="id">K8S-0004</dd></div>
+            <div class="row"><dt>severity</dt><dd class="sev sev-medium">medium</dd></div>
+            <div class="row"><dt>file</dt><dd>manifests/api-deployment.yaml</dd></div>
+            <div class="row"><dt>line</dt><dd>34</dd></div>
+            <div class="row"><dt>message</dt><dd>Container has no memory limit</dd></div>
+          </dl>
+        </div>
+
+      </div>
+
+      <a class="hero-action" href="https://github.com/Axelthebat" data-reveal>See the code</a>
+      <p class="hero-note" data-reveal>k8s-audit is in design. The rules on this page are the ones it will enforce, written down before the tool exists so they can be argued with.</p>
+    </section>
+
+    <section class="section intro">
+      <div class="column">
+        <p data-reveal>I build small tools that find problems in other people's systems.</p>
+        <p data-reveal>Most of my work is auditing infrastructure: Kubernetes manifests, Linux hosts, and the traffic between them. The tools are boring on purpose. A scanner that prints one line per problem beats a dashboard nobody can reproduce.</p>
+        <p data-reveal>I work in Go and Rust, mostly against Linux, containers and Oracle Cloud. Everything I release is MIT licensed and built in the open. A scanner you cannot read is a scanner you cannot trust.</p>
+        <p data-reveal>This site follows the same rule: the work in the open, and no claim I cannot back with a link. <a href="blog/">Read the design notes</a>.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 data-reveal>What exists today</h2>
+      <div class="ledger">
+        <div class="ledger-row" data-reveal>
+          <span class="name">k8s-audit</span>
+          <span class="kind">Audits Kubernetes manifests against a hardening baseline (in design)</span>
+          <span class="year">2026</span>
+        </div>
+        <div class="ledger-row" data-reveal>
+          <span class="name">This site</span>
+          <span class="kind">Personal site and writing (shipped)</span>
+          <span class="year">2026</span>
+        </div>
+        <div class="ledger-row" data-reveal>
+          <span class="name">Profile and community setup</span>
+          <span class="kind">Issue forms, discussion rules, code of conduct, security policy (shipped)</span>
+          <span class="year">2026</span>
+        </div>
+
+        <div class="strip">
+          <figure data-reveal>
+            <img src="assets/a-messy-network-server-room-showing-wires.jpg" width="1542" height="2048" loading="lazy" decoding="async" alt="A rack of network switches with dozens of white ethernet cables patched into the front panel">
+          </figure>
+          <figure data-reveal>
+            <img src="assets/free-computer-server-room-image.webp" width="1024" height="768" loading="lazy" decoding="async" alt="Rows of black server racks with blue cabling in a data centre">
+          </figure>
+          <figure data-reveal>
+            <img src="assets/splicing-of-the-fiber-optic-cables-for.jpg" width="1920" height="1440" loading="lazy" decoding="async" alt="A fibre optic patch panel with a fibre fusion splicer open in front of it">
+          </figure>
+        </div>
+        <p class="small muted" style="margin-top:1.2rem">The kind of systems these tools are pointed at. Photos: Moses Cursor Ssebunya (CC0), rawpixel (CC0), MTA Capital Construction (CC BY 2.0).</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 data-reveal>The rules</h2>
+      <div class="ledger">
+        <div class="rule-detail" id="rule-detail" data-reveal>
+          <h3 id="detail-title">K8S-0002: Container runs with privileged: true</h3>
+          <p class="small muted" id="detail-message">A privileged container shares the host's capabilities and can escape its own boundaries. Treat it as a cluster-wide compromise.</p>
+          <pre><code id="detail-fragment">securityContext:
+  privileged: true</code></pre>
+        </div>
+
+        <table class="rules" data-reveal>
+          <thead>
+            <tr><th scope="col">Rule</th><th scope="col">What it checks</th><th scope="col">Severity</th></tr>
+          </thead>
+          <tbody id="rules-body">
+            <tr data-rule="K8S-0001" data-severity="high" data-check="Container runs as root" data-message="The container starts as uid 0. Give it a runAsNonRoot user instead." data-fragment="securityContext:
+  runAsUser: 0">
+              <td class="rid">K8S-0001</td><td>Container runs as root</td><td class="sev sev-high">high</td>
+            </tr>
+            <tr data-rule="K8S-0002" data-severity="critical" data-check="Container runs with privileged: true" data-message="A privileged container shares the host's capabilities and can escape its own boundaries. Treat it as a cluster-wide compromise." data-fragment="securityContext:
+  privileged: true">
+              <td class="rid">K8S-0002</td><td>Container runs with privileged: true</td><td class="sev sev-critical">critical</td>
+            </tr>
+            <tr data-rule="K8S-0003" data-severity="high" data-check="Container shares the host network namespace" data-message="hostNetwork: true puts the container directly on the node's interfaces, with no network policy able to separate it." data-fragment="spec:
+  hostNetwork: true">
+              <td class="rid">K8S-0003</td><td>Container shares the host network namespace</td><td class="sev sev-high">high</td>
+            </tr>
+            <tr data-rule="K8S-0004" data-severity="medium" data-check="Container has no memory limit" data-message="Without a limit one process can exhaust the node's memory and take every pod on it down." data-fragment="resources:
+  limits:
+    memory: 512Mi">
+              <td class="rid">K8S-0004</td><td>Container has no memory limit</td><td class="sev sev-medium">medium</td>
+            </tr>
+            <tr data-rule="K8S-0005" data-severity="medium" data-check="Service account token mounted by default" data-message="The default token is readable by anything that can exec into the container. Turn the automount off." data-fragment="automountServiceAccountToken: false">
+              <td class="rid">K8S-0005</td><td>Service account token mounted by default</td><td class="sev sev-medium">medium</td>
+            </tr>
+            <tr data-rule="K8S-0006" data-severity="low" data-check="Image tag is not pinned to a digest" data-message="A floating tag means the image that runs today may not be the image that runs tomorrow." data-fragment="image: ghcr.io/acme/api:latest">
+              <td class="rid">K8S-0006</td><td>Image tag is not pinned to a digest</td><td class="sev sev-low">low</td>
+            </tr>
+            <tr data-rule="K8S-0007" data-severity="medium" data-check="Capability added beyond the default set" data-message="Extra capabilities widen the attack surface of a container escape. Add only what the workload needs." data-fragment="securityContext:
+  capabilities:
+    add: [NET_ADMIN]">
+              <td class="rid">K8S-0007</td><td>Capability added beyond the default set</td><td class="sev sev-medium">medium</td>
+            </tr>
+            <tr data-rule="K8S-0008" data-severity="low" data-check="Root filesystem is writable" data-message="readOnlyRootFilesystem removes the usual place a dropped payload is written and executed from." data-fragment="securityContext:
+  readOnlyRootFilesystem: false">
+              <td class="rid">K8S-0008</td><td>Root filesystem is writable</td><td class="sev sev-low">low</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="small muted">Click a row to see the manifest fragment it targets. These are the first eight checks. The rest of the CIS Benchmark mapping is still to do.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 data-reveal>How I work</h2>
+      <div class="ledger">
+        <div class="letter">
+          <p data-reveal>I started with a broken homelab and too much curiosity.</p>
+          <p data-reveal>That has not changed much. I like the part of security work where you read a system carefully enough to know exactly what it will do when someone pushes on it. Most of the tooling I write exists because I wanted to see one specific thing clearly, and the general-purpose tool did not show it.</p>
+          <p data-reveal>I work in the open because the alternative is worse. Every question about a scanner should be answerable by reading the code, and every rule should be one you can disagree with. If you think one of my checks is wrong, open an issue and tell me why. I would rather fix it than defend it.</p>
+        </div>
+
+        <figure class="figure-wide" data-reveal>
+          <img src="assets/fiber-optical-cable.jpg" width="1920" height="1280" loading="lazy" decoding="async" alt="A bundle of fibre optic strands fanning out from a bright point, lit against a dark background">
+          <figcaption>Fibre optic strands fanning out from a single point. Photo: chaitawat (CC0), via Wikimedia Commons.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 data-reveal>Contact</h2>
+      <div class="ledger">
+        <p class="contact-line" data-reveal>Found a bug in something I wrote, or want to argue about a rule?</p>
+        <p data-reveal>Issues and pull requests go to the repositories. Discussions are for anything that needs a conversation first: a rule you think is wrong, a tool you want, a problem I have not thought of. I read both, and I answer the ones that come with a reason.</p>
+        <div class="contact-links" data-reveal>
+          <a href="https://github.com/Axelthebat">GitHub</a>
+          <a href="https://github.com/Axelthebat/Axelthebat/discussions">Discussions</a>
+          <a href="https://github.com/Axelthebat/Axelthebat/security/policy">Security policy</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<footer class="footer">
+  <div class="page">
+    <span class="footer-name" data-reveal>Axel the Bat</span>
+    <span class="footer-note" data-reveal>Brazil. Plain HTML, CSS and one script file, no build step.</span>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

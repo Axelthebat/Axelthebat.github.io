@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Designing k8s-audit: Axel the Bat</title>
+<meta name="description" content="A scanner for Kubernetes manifests that prints one line per problem. The rules, the pipeline, the output format, and what is deliberately out of scope.">
+<meta name="theme-color" content="#f0ece7">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet"> <!-- taste-skill-ignore: a monoespacada so e usada dentro de bloco de codigo real -->
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="top">
+    <a class="wordmark" href="/">Axel the Bat</a>
+    <p class="tagline">Design notes on the tools I am building: what they check, and what is still open.</p>
+  </header>
+
+  <main>
+
+    <article>
+      <a class="back" data-reveal href="/blog/">&larr; All writing</a>
+
+      <h1 data-reveal>Designing k8s-audit</h1>
+      <p class="byline" data-reveal>19 October 2026</p>
+
+      <p class="lead" data-reveal>A scanner for Kubernetes manifests that prints one line per problem and exits non-zero when it finds one.</p>
+
+      <h2 data-reveal>The problem</h2>
+
+      <p>Most manifest review happens by reading YAML. That works until the manifest count grows past what one person can hold in their head, and then it happens through whatever review tool the team already has. The checks are not the problem. The problem is that a checklist, a policy document and someone's memory are the only places they live, and none of those run in CI.</p>
+
+      <p>k8s-audit is a small binary that reads a directory of manifests, evaluates a set of rules against them, and writes findings. It is meant to sit in a pull request, next to the linter and the test run.</p>
+
+      <h2 data-reveal>What it checks</h2>
+
+      <p>Every rule is one function that takes a parsed object and returns zero or more findings. There is no configuration file, no severity inheritance and no policy language. If a rule needs a decision, it is the wrong rule or the wrong tool.</p>
+
+      <p>The first eight checks are the ones I keep reaching for by hand when I look at a manifest I did not write:</p>
+
+      <ul data-reveal>
+        <li><strong>K8S-0001</strong>: the container runs as root</li>
+        <li><strong>K8S-0002</strong>: the container runs with <code>privileged: true</code></li>
+        <li><strong>K8S-0003</strong>: the container shares the host network namespace</li>
+        <li><strong>K8S-0004</strong>: the container has no memory limit</li>
+        <li><strong>K8S-0005</strong>: the service account token is mounted by default</li>
+        <li><strong>K8S-0006</strong>: the image tag is not pinned to a digest</li>
+        <li><strong>K8S-0007</strong>: a capability is added beyond the default set</li>
+        <li><strong>K8S-0008</strong>: the root filesystem is writable</li>
+      </ul>
+
+      <p>The mapping to the CIS Kubernetes Benchmark is not done yet, and I would rather say so than publish control numbers I have not checked against the document. That mapping is the next piece of work, not a detail.</p>
+
+      <h2 data-reveal>How it works</h2>
+
+      <p>Four stages, and nothing clever in any of them.</p>
+
+      <div class="diagram" data-reveal>
+        <img src="assets/pipeline.svg" width="800" alt="A diagram: manifests are parsed, a rule engine evaluates them, findings are produced, and the findings are written out as SARIF for code scanning and as text or JSON for a terminal.">
+      </div>
+
+      <p>Parsing is deliberately shallow. Each file becomes one object, and a manifest that is not valid YAML is reported as a finding rather than as a crash. The rule engine gets a plain object and knows nothing about the file it came from, which keeps the rules easy to test and easy to read.</p>
+
+      <p>Output comes in two shapes. SARIF goes to GitHub code scanning, so a finding shows up on the pull request that introduced it. That is the only place anyone will actually read it. Text and JSON go to a terminal, for the person running it locally.</p>
+
+      <h2 data-reveal>Out of scope</h2>
+
+      <ul data-reveal>
+        <li>Auto-fixing. A scanner that rewrites a manifest is a different tool with a different risk profile, and it deserves its own argument.</li>
+        <li>Policy configuration. Severity is fixed per rule, chosen by me, and argued about in an issue if you disagree.</li>
+        <li>Live cluster inspection. This reads files. What is actually running in a cluster is a different question with a different answer.</li>
+        <li>A dashboard. A pull request comment is the interface.</li>
+      </ul>
+
+      <h2 data-reveal>Status</h2>
+
+      <p data-reveal>The rules exist as prose on the front page of this site, and the pipeline is decided. The code is not written yet. When it is, it will be MIT licensed, the rules will be the ones above, and the table on the front page will link straight at the implementation.</p>
+
+      <p data-reveal>If you think one of these eight checks is wrong, or that a ninth one matters more, open an issue on the repository and say why. I would rather change the rule set now than defend it later.</p>
+
+      <figure class="figure-wide" data-reveal>
+        <img src="../../assets/free-computer-server-room-image-2.webp" width="1024" height="576" loading="lazy" decoding="async" alt="A wide data centre aisle with rows of server racks receding into the distance">
+        <figcaption>The clusters these manifests end up on. Photo: rawpixel (CC0).</figcaption>
+      </figure>
+    </article>
+
+  </main>
+
+</div>
+
+<footer class="footer">
+  <div class="page">
+    <span class="footer-name">Axel the Bat</span>
+    <span class="footer-note">Brazil.</span>
+  </div>
+</footer>
+
+</body>
+</html>
