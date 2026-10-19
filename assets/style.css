@@ -11,14 +11,14 @@
   --ink: #1c1b19;
   --muted: #4e4c47;
   --faint: #656359;
-  --accent: #0f7d45;
+  --accent: #0b6b3b;
   --accent-ink: #ffffff;
 
   /* severidade: dado, nao decoracao */
-  --sev-critical: #a3231b;
-  --sev-high: #99550f;
-  --sev-medium: #7a6510;
-  --sev-low: #0f7d45;
+  --sev-critical: #98201a;
+  --sev-high: #844508;
+  --sev-medium: #635108;
+  --sev-low: #0b6b3b;
 
   /* tipo */
   --step-small: 0.8125rem;
@@ -235,7 +235,7 @@ li::marker { color: var(--faint); }
   border-radius: 2px;
   transition: background 140ms ease, transform 140ms ease;
 }
-.hero-action:hover { background: #0b6337; text-decoration: none; transform: translateY(-1px); }
+.hero-action:hover { background: #084f2d; text-decoration: none; transform: translateY(-1px); }
 
 .hero-note {
   margin: 1rem 0 0;
