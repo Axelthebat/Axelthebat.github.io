@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Axel the Bat: security tooling for Linux, Kubernetes and networks</title>
-<meta name="description" content="Axel builds small auditing tools in Go and Rust for Linux hosts, Kubernetes manifests and the networks between them. Everything MIT licensed and built in the open.">
+<title>Axel the Bat: tools for Linux systems</title>
+<meta name="description" content="Axel builds small tools for Linux systems: macOS virtual machines on a virtual GPU, and an auditor for Kubernetes manifests. Go, Rust and Python, MIT licensed.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Axel the Bat: security tooling">
-<meta property="og:description" content="Small auditing tools for Linux, Kubernetes and networks. Go and Rust, MIT licensed.">
+<meta property="og:title" content="Axel the Bat: tools for Linux systems">
+<meta property="og:description" content="macOS VMs on Linux with a virtual GPU, and a Kubernetes manifest auditor. Go, Rust and Python, MIT licensed.">
 <meta name="theme-color" content="#eae9e6">
 
 <link rel="preconnect" href="https://api.fontshare.com">
@@ -24,7 +24,7 @@
 
   <header class="top">
     <h1 class="wordmark" data-reveal>Axel the Bat</h1>
-    <p class="tagline" data-reveal>Small auditing tools for Linux hosts, Kubernetes manifests and the networks between them. Go and Rust, MIT licensed.</p>
+    <p class="tagline" data-reveal>Small tools for Linux systems: macOS virtual machines on a virtual GPU, and an auditor for Kubernetes manifests. Go, Rust and Python, MIT licensed.</p>
   </header>
 
   <main>
@@ -71,9 +71,9 @@
 
     <section class="section intro">
       <div class="column">
-        <p data-reveal>I build small tools that find problems in other people's systems.</p>
-        <p data-reveal>Most of my work is auditing infrastructure: Kubernetes manifests, Linux hosts, and the traffic between them. The tools are boring on purpose. A scanner that prints one line per problem beats a dashboard nobody can reproduce.</p>
-        <p data-reveal>I work in Go and Rust, mostly against Linux, containers and Oracle Cloud. Everything I release is MIT licensed and built in the open. A scanner you cannot read is a scanner you cannot trust.</p>
+        <p data-reveal>I build small tools for Linux systems, and I write down how they work.</p>
+        <p data-reveal>One of them manages macOS virtual machines on Linux, on top of the virtual GPU that reims-vgpu provides. The other one audits Kubernetes manifests and is still in design. Both report and stop: <code>macosvm doctor</code> lists what is missing on your machine, and a finding is one line with a rule and a file.</p>
+        <p data-reveal>I work in Go, Rust and Python, mostly against Linux, containers and cloud infrastructure. Everything I release is MIT licensed and built in the open. A tool you cannot read is a tool you cannot trust.</p>
         <p data-reveal>This site follows the same rule: the work in the open, and no claim I cannot back with a link. <a href="blog/">Read the design notes</a>.</p>
       </div>
     </section>
@@ -81,6 +81,11 @@
     <section class="section">
       <h2 data-reveal>What exists today</h2>
       <div class="ledger">
+        <div class="ledger-row" data-reveal>
+          <span class="name"><a href="https://github.com/Axelthebat/macos-vm-manager">macosvm</a></span>
+          <span class="kind">Open manager for macOS VMs on Linux, on top of the reims-vgpu virtual GPU (shipped)</span>
+          <span class="year">2026</span>
+        </div>
         <div class="ledger-row" data-reveal>
           <span class="name">k8s-audit</span>
           <span class="kind">Audits Kubernetes manifests against a hardening baseline (in design)</span>
